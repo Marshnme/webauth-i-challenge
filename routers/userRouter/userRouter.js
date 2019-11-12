@@ -1,13 +1,12 @@
 const express = require('express');
 const model = require('./userModel');
 const router = express.Router();
-
+const bcrypt = require('bcrypt');
 
 
 router.get('/',(req,res) => {
-    let {username,password} = req.headers;
 
-    if(username && password){
+    if(req.session && req.session.username){
         model.find()
         .then(users => {
             res.status(200).json(users)

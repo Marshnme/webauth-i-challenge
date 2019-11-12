@@ -11,6 +11,7 @@ router.post('/',(req,res) => {
     user.password = hashPass
     model.add(user)
     .then(newUser => {
+        req.session.username = newUser.username;
         res.status(200).json(newUser)
     })
     .catch(err => {
